@@ -1,4 +1,4 @@
-# Load required libraries
+# Loading the tidyverse library
 library(tidyverse)
 
 # Function to check if required columns exist
@@ -10,12 +10,12 @@ check_columns <- function(data, columns) {
 }
 
 # Load the dataset with error handling to chech if the jove survey datafile exists
-file_path <- "C:/Users/cbaraka/OneDrive/Masters/Assignments/Quantitative Analysis/Week 12/job_survey_data.csv"
+file_path <- "C:/File_Path"
 if (file.exists(file_path)) {
   data <- read.csv(file_path)
   check_columns(data, c("autonom1", "autonom2", "autonom3", "autonom4", "age"))
 } else {
-  stop("File not found.")
+  stop("File not found.") # Error for when the file does not exist or is moved
 }
 
 # Calculating the average autonomy score for the 4 autonomy variables: autonom1", "autonom2", "autonom3", "autonom4
