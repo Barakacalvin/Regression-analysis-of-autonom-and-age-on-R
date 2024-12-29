@@ -9,7 +9,7 @@ check_columns <- function(data, columns) {
   }
 }
 
-# Load the dataset with error handling
+# Load the dataset with error handling to chech if the jove survey datafile exists
 file_path <- "C:/Users/cbaraka/OneDrive/Masters/Assignments/Quantitative Analysis/Week 12/job_survey_data.csv"
 if (file.exists(file_path)) {
   data <- read.csv(file_path)
@@ -18,7 +18,7 @@ if (file.exists(file_path)) {
   stop("File not found.")
 }
 
-# Calculate the average autonomy score
+# Calculating the average autonomy score for the 4 autonomy variables: autonom1", "autonom2", "autonom3", "autonom4
 data <- data %>%
   mutate(average_autonom = rowMeans(select(., autonom1:autonom4), na.rm = TRUE))
 
@@ -32,7 +32,7 @@ summary(model_avg)
 predicted_value_avg <- predict(model_avg, newdata = data.frame(age = 54))
 print(predicted_value_avg)
 
-# Create a scatter plot with regression line
+# Create a scatter plot with regression line fro autonom and age
 ggplot(data, aes(x = age, y = average_autonom)) +
   geom_point(color = "blue") +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
